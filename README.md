@@ -63,47 +63,43 @@ UI는 HTML/CSS/ES modules로 작성되었으며 런타임 의존성이 없습니
 
 ## 기능 소개 · 스크린샷
 
-스크린샷의 이름과 칩은 데모 게임 데이터입니다.
+현재 배포 버전에서 촬영한 화면입니다. 이름과 칩은 데모 게임 데이터입니다.
 
-### 공유 화면 테이블
+### 공유 화면 테이블 · 밝은 팔레트와 큰 글씨
 
-![공유 화면 테이블](preview/table.png)
-
-### 밝은 패널과 포커 팔레트
-
-![밝은 패널과 포커 팔레트](preview/palette.png)
-
-### 큰 글씨와 촘촘한 화면 구성
-
-![큰 글씨와 촘촘한 화면 구성](preview/compact.png)
+![공유 화면 테이블 · 밝은 팔레트와 큰 글씨](preview/table-current.png)
 
 ### 권종별 칩을 쌓아 베팅 확정
 
-![권종별 칩을 쌓아 베팅 확정](preview/chip-betting.png)
+![권종별 칩을 쌓아 베팅 확정](preview/chip-betting-current.png)
 
 ### 플레이어 간 팁 보내기
 
-![플레이어 간 팁 보내기](preview/tips.png)
+![플레이어 간 팁 보내기](preview/tips-current.png)
 
 ### 첫 빅 블라인드 랜덤 추첨
 
-![첫 빅 블라인드 랜덤 추첨](preview/bb-draw.png)
+![첫 빅 블라인드 랜덤 추첨](preview/bb-draw-current.png)
 
 ### 큰 레이즈
 
-![큰 레이즈](preview/big-raise.png)
+![큰 레이즈](preview/big-raise-current.png)
 
 ### 재레이즈 맞불
 
-![재레이즈 맞불](preview/raise-war.png)
+![재레이즈 맞불](preview/raise-war-current.png)
 
 ### 올인 맞대결
 
-![올인 맞대결](preview/allin-duel.png)
+![올인 맞대결](preview/allin-duel-current.png)
+
+### 팟 승자 선택과 칩 분배
+
+![팟 승자 선택과 칩 분배](preview/showdown-current.png)
 
 ### 큰 승리와 축하 효과
 
-![큰 승리와 축하 효과](preview/big-win.png)
+![큰 승리와 축하 효과](preview/big-win-current.png)
 
 ## 개인정보와 배포
 
