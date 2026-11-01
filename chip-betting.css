@@ -1,0 +1,277 @@
+/* Physical chip picking and an uncommitted betting tray. */
+.chip-betting-dock {
+  grid-template-columns: minmax(140px, .6fr) minmax(230px, 1.05fr) minmax(500px, 2.35fr);
+  gap: 8px;
+  padding: 7px 9px;
+  min-height: 188px;
+}
+.chip-betting-dock .action-button { height: 122px; }
+.chip-betting-dock .turn-summary h2 { font-size: clamp(25px, 2.3vw, 38px); }
+.chip-builder { min-width: 0; padding-left: 10px; border-left: 1px solid var(--line); }
+.builder-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 7px; }
+.builder-kicker { font-size: 9px; font-weight: 700; letter-spacing: 1.3px; color: #8196a0; }
+.builder-heading h3 { margin: 2px 0 0; font-size: 18px; letter-spacing: -.6px; line-height: 1.3; }
+.draft-amount { min-width: 100px; max-width: 55%; display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: baseline; text-align: right; }
+.draft-amount > span { font-size: 12px; color: #688491; }
+.draft-amount > strong { min-width: 0; font-family: Manrope, sans-serif; font-size: 31px; letter-spacing: -.9px; line-height: 1; white-space: nowrap; }
+.draft-amount > small { grid-column: 1 / -1; font-size: 11px; color: #8396a0; line-height: 1.6; }
+.draft-amount > small b { font-size: 13px; color: #466575; }
+.chip-workbench { display: flex; gap: 9px; align-items: stretch; }
+.chip-rack { flex: 1.65; display: flex; flex-wrap: wrap; justify-content: space-around; align-content: center; gap: 6px; min-width: 0; padding: 0 2px 3px; }
+.chip-pick { min-width: 44px; display: flex; flex: 1; flex-direction: column; align-items: center; gap: 5px; }
+.denomination-chip {
+  --chip-size: clamp(46px, 4.1vw, 66px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: var(--chip-size);
+  width: var(--chip-size);
+  border: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 8deg, var(--chip-face) 0deg 29deg, #fff8e7 29deg 43deg, var(--chip-face) 43deg 60deg);
+  color: var(--chip-ink);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--chip-face) 68%, #001721), 0 4px 0 color-mix(in srgb, var(--chip-face) 80%, #001721), 0 6px 8px #03263524;
+  transition: transform .15s, box-shadow .15s, opacity .15s;
+  flex: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+.denomination-chip::before { content: ''; position: absolute; inset: 2px; border: 1px solid #ffffff72; border-radius: inherit; }
+.chip-face { height: 73%; width: 73%; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 1px solid color-mix(in srgb, var(--chip-ink) 60%, transparent); border-radius: 50%; background: var(--chip-face); box-shadow: inset 0 1px 5px #00172121; }
+.chip-face > span { font-family: Manrope, sans-serif; font-size: clamp(15px, 1.35vw, 21px); font-weight: 800; letter-spacing: -.5px; line-height: 1.2; }
+.chip-face > small { font-size: 10px; line-height: 1; opacity: .8; }
+.denomination-chip:not(:disabled):hover { transform: translateY(-3px) rotate(-6deg); box-shadow: 0 2px 0 color-mix(in srgb, var(--chip-face) 68%, #001721), 0 4px 0 color-mix(in srgb, var(--chip-face) 80%, #001721), 0 9px 12px #03263533; }
+.denomination-chip:not(:disabled):active { transform: translateY(2px) rotate(2deg); }
+.denomination-chip:disabled { opacity: .25; }
+.chip-counter { display: flex; align-items: center; gap: 4px; }
+.chip-counter > button { width: 22px; height: 22px; display: grid; place-items: center; padding: 0; border: 1px solid #d8e3e8; border-radius: 50%; color: #63818f; background: #f5f8fa; font-size: 18px; line-height: 1; }
+.chip-counter > button:not(:disabled):hover { color: #bd354c; border-color: #dba2ac; background: #fdf0f1; }
+.chip-counter > output { font-family: Manrope, sans-serif; font-size: 14px; font-weight: 800; min-width: 22px; color: #284f63; letter-spacing: -.4px; white-space: nowrap; }
+.wager-tray { flex: 1; min-width: 120px; min-height: 82px; border: 1px solid #426b6c; border-radius: 8px; padding: 5px 6px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 4px 8px; background: radial-gradient(ellipse at center, #0d5640, #073c36); box-shadow: inset 0 1px 8px #00172138; }
+.empty-tray { text-align: center; color: #c0d8ce; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.empty-tray > .icon { width: 23px; height: 23px; color: #85b49c; }
+.empty-tray > span { font-size: 12px; }
+.empty-tray > small { font-size: 9px; color: #8fbaa5; }
+.builder-footer { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 6px; }
+.draft-hint { min-width: 0; margin: 0; font-size: 11px; color: #6a8593; line-height: 1.5; }
+.draft-hint.needs-more { color: #b16d30; }
+.builder-buttons { display: flex; align-items: center; gap: 5px; flex: none; }
+.draft-shortcut { min-height: 32px; padding: 5px 7px; border-radius: 5px; background: #f3f7f9; border: 1px solid #dce6ec; font-size: 11px; color: #658393; white-space: nowrap; }
+.draft-shortcut:not(:disabled):hover { background: #e7f0f6; }
+.clear-draft { display: flex; align-items: center; gap: 3px; }
+.clear-draft .icon { width: 12px; height: 12px; }
+.chip-ok { min-height: 39px; min-width: 105px; padding: 5px 9px; display: flex; align-items: center; justify-content: center; gap: 7px; color: white; background: #0878cb; border: 1px solid #0866ad; border-radius: 7px; box-shadow: 0 2px 3px #0878cb1a; }
+.chip-ok > span { font-family: Manrope, sans-serif; font-weight: 800; font-size: 23px; line-height: 1; }
+.chip-ok > small { font-size: 11px; }
+.chip-ok > .icon { width: 17px; height: 17px; }
+.chip-ok:not(:disabled):hover { background: #0666ad; box-shadow: 0 3px 8px #0878cb33; }
+.chip-ok:disabled { opacity: .3; }
+.builder-locked .chip-rack { opacity: .55; }
+
+/* Visible stack heights are capped; the exact count is always printed. */
+.chip-pile { --disc-size: 31px; position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 3px; min-width: 35px; padding: 0; flex: none; background: transparent; border: 0; color: #e8f4e9; text-align: center; }
+.pile-discs { display: block; position: relative; height: 32px; width: var(--disc-size); }
+.pile-discs > i { position: absolute; left: 0; bottom: calc(var(--level) * 3px); height: calc(var(--disc-size) * .55); width: var(--disc-size); border: 2px dashed #fff7e6; border-radius: 50%; background: var(--chip-face); color: var(--chip-ink); box-shadow: 0 2px 0 color-mix(in srgb, var(--chip-face) 70%, #001721); display: grid; place-items: center; font-style: normal; }
+.pile-discs > i > span { font-size: 8px; font-family: Manrope, sans-serif; font-weight: 800; line-height: 1; }
+.pile-count { display: block; color: inherit; font-size: 9px; line-height: 1.2; white-space: nowrap; letter-spacing: -.1px; }
+.pile-count > b { font-size: 12px; font-weight: 800; font-family: Manrope, sans-serif; margin-left: 2px; }
+.removable-pile { padding: 4px 3px; border-radius: 6px; min-width: 38px; }
+.removable-pile:hover { background: #ffffff15; }
+.removable-pile .pile-count { font-size: 10px; }
+.removable-pile .pile-count > b { font-size: 14px; }
+.pile-minus { position: absolute; right: -2px; top: 0; width: 15px; height: 15px; display: grid; place-items: center; border: 1px solid #d6b578; background: #f8e5b5; color: #725b31; border-radius: 50%; font-size: 14px; line-height: 1; }
+.actual-pot-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0; margin: 5px 0 7px; min-height: 0; }
+.actual-pot-chips:empty { display: none; }
+.actual-pot-chips .chip-pile { --disc-size: clamp(25px, 3.8cqw, 43px); }
+.actual-pot-chips .pile-discs { height: 38px; }
+.actual-pot-chips .pile-count { font-size: clamp(9px, 1.1cqw, 14px); }
+.actual-pot-chips .pile-count > b { font-size: clamp(12px, 1.6cqw, 18px); }
+.actual-wager { flex-direction: column; gap: 3px; min-width: 40px; }
+.actual-wager > strong { font-size: clamp(12px, 1.6cqw, 20px); }
+.wager-piles { display: flex; justify-content: center; flex-wrap: wrap; max-width: 145px; gap: 4px; }
+.actual-wager .chip-pile { --disc-size: clamp(20px, 2.8cqw, 30px); min-width: 27px; }
+.actual-wager .pile-discs { height: 25px; }
+.actual-wager .pile-count { font-size: clamp(8px, 1cqw, 12px); }
+.actual-wager .pile-count > b { font-size: clamp(10px, 1.2cqw, 15px); }
+.count-6 .actual-wager.bet-left { left: auto; right: calc(100% + 9px); top: 50%; transform: translateY(-50%); }
+.count-6 .actual-wager.bet-right { right: auto; left: calc(100% + 9px); top: 50%; transform: translateY(-50%); }
+.flying-chip { display: grid; place-items: center; height: 30px; width: 30px; font: 800 9px Manrope, sans-serif; }
+
+@media (min-width: 1600px) {
+  .chip-betting-dock { min-height: 205px; }
+  .chip-workbench { gap: 12px; }
+  .builder-heading h3 { font-size: 23px; }
+  .draft-amount > strong { font-size: 39px; }
+  .draft-amount > span, .draft-amount > small { font-size: 14px; }
+  .draft-amount > small b { font-size: 16px; }
+  .builder-kicker { font-size: 11px; }
+  .chip-counter > output { font-size: 17px; }
+  .wager-tray { min-height: 96px; }
+  .draft-hint { font-size: 13px; }
+  .draft-shortcut { font-size: 14px; padding: 6px 9px; }
+  .chip-ok { min-height: 45px; min-width: 125px; }
+  .chip-ok > span { font-size: 29px; }
+  .chip-ok > small { font-size: 13px; }
+  .removable-pile { --disc-size: 38px; }
+  .removable-pile .pile-discs { height: 40px; }
+  .removable-pile .pile-count { font-size: 12px; }
+  .removable-pile .pile-count > b { font-size: 17px; }
+  .empty-tray > span { font-size: 15px; }
+  .empty-tray > small { font-size: 11px; }
+}
+@media (min-width: 1000px) and (max-height: 800px) {
+  .chip-betting-dock { min-height: 179px; }
+  .chip-betting-dock .action-button { height: 105px; }
+  .builder-heading { margin-bottom: 5px; }
+  .denomination-chip { --chip-size: 46px; }
+  .chip-face > span { font-size: 15px; }
+  .wager-tray { min-height: 75px; }
+  .builder-footer { margin-top: 4px; }
+  .count-4 .actual-pot-chips { display: flex; margin: 3px 0; gap: 5px; }
+  .count-4 .actual-pot-chips .pile-discs { display: none; }
+  .count-4 .actual-pot-chips .pile-count { font-size: 10px; }
+  .count-4 .actual-pot-chips .pile-count > b { font-size: 12px; }
+  .pot-display, .count-6 .pot-display { top: 50%; }
+  .count-3 .pot-display { top: 56%; }
+  .pot-eyebrow { font-size: 12px; }
+  .pot-number, .count-4 .pot-number { font-size: clamp(48px, 6.5cqw, 80px); }
+  .pot-number > span { font-size: 9px; margin-top: 2px; }
+  .actual-pot-chips .pile-discs { height: 25px; }
+  .actual-pot-chips .chip-pile { --disc-size: 27px; }
+  .actual-pot-chips .pile-count { font-size: 9px; }
+  .actual-pot-chips .pile-count > b { font-size: 12px; }
+  .actual-pot-chips { margin: 3px 0 5px; }
+  .center-pill { font-size: 12px; padding: 3px 7px; }
+  .center-status p, .center-status .side-pot-hint { font-size: 11px; }
+  .seat:has(.actual-wager), .seat.is-turn:has(.actual-wager), .seat.is-winner:has(.actual-wager) { --seat-inset: 70px; padding-bottom: 18px; }
+  .seat:has(.actual-wager) .seat-balance { font-size: clamp(28px, 3.5cqw, 36px); }
+  .seat:has(.actual-wager) .stack-unit { display: inline; }
+  .seat:has(.actual-wager) .stack-value { flex: 1; width: auto; }
+  .seat:has(.actual-wager) .turn-ribbon { font-size: 9px; padding: 3px 7px; }
+  .seat .actual-wager, .count-6 .seat .actual-wager.bet-left, .count-6 .seat .actual-wager.bet-right,
+  .count-3 .seat .actual-wager.bet-bottom, .count-4 .seat .actual-wager.bet-bottom,
+  .count-4 .seat .actual-wager.bet-top, .count-5 .seat .actual-wager.bet-top {
+    left: 5px; right: 5px; top: auto; bottom: 3px; transform: none; min-width: 0; max-width: none;
+  }
+  .actual-wager > strong { display: none; }
+  .wager-piles { flex-direction: row; justify-content: flex-start; flex-wrap: wrap; gap: 3px 6px; max-width: none; }
+  .actual-wager .chip-pile { flex-direction: row; gap: 3px; min-width: 0; color: #385769; }
+  .actual-wager .pile-discs { display: none; }
+  .actual-wager .chip-pile::before { content: ''; flex: none; width: 9px; height: 9px; border-radius: 50%; border: 1px dashed #e7d4a7; background: var(--chip-face); box-shadow: 0 1px 0 #153c4a66; }
+  .actual-wager .pile-count { font-size: 9px; }
+  .actual-wager .pile-count > b { font-size: 11px; margin-left: 1px; }
+  .seat:has(.wager-piles .chip-pile:nth-child(5)) { padding-bottom: 31px; }
+}
+@media (max-width: 1190px) and (min-width: 1000px) {
+  .chip-betting-dock { grid-template-columns: minmax(125px, .55fr) minmax(220px, .95fr) minmax(490px, 2.5fr); gap: 6px; }
+  .chip-betting-dock .turn-summary p { font-size: 12px; }
+  .chip-betting-dock .turn-summary p strong { font-size: 19px; }
+  .chip-betting-dock .action-button { font-size: 22px; }
+  .chip-betting-dock .call-button strong { font-size: 28px; }
+  .chip-builder { padding-left: 7px; }
+  .chip-rack { gap: 4px; }
+  .chip-pick { min-width: 42px; }
+  .wager-tray { min-width: 110px; }
+  .builder-heading h3 { font-size: 16px; }
+  .draft-amount > strong { font-size: 29px; }
+  .draft-amount > span { font-size: 11px; }
+  .draft-hint { font-size: 10px; }
+  .draft-shortcut { padding: 5px; font-size: 10px; }
+  .chip-ok { min-width: 100px; }
+}
+@media (max-width: 999px) {
+  .chip-betting-dock { grid-template-columns: minmax(145px, .8fr) minmax(0, 1.6fr); gap: 7px; }
+  .chip-betting-dock .action-button { height: 82px; }
+  .chip-builder { grid-column: 1 / -1; padding: 7px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .denomination-chip { --chip-size: 58px; }
+  .chip-face > span { font-size: 19px; }
+  .chip-counter > output { font-size: 16px; }
+  .chip-counter > button { height: 25px; width: 25px; }
+  .builder-heading h3 { font-size: 20px; }
+  .draft-amount > strong { font-size: 34px; }
+  .builder-footer { margin-top: 7px; }
+  .chip-ok { min-height: 43px; }
+  .draft-shortcut { min-height: 35px; font-size: 12px; }
+  .draft-hint { font-size: 12px; }
+  .count-6 .actual-wager.bet-left, .count-6 .actual-wager.bet-right { left: 50%; right: auto; top: calc(100% + 7px); transform: translateX(-50%); }
+}
+@media (max-width: 600px) {
+  .chip-betting-dock { grid-template-columns: minmax(106px, .8fr) minmax(0, 1.5fr); gap: 5px; padding: 5px; }
+  .chip-betting-dock .turn-summary h2 { font-size: 24px; }
+  .chip-betting-dock .turn-summary p { font-size: 11px; }
+  .chip-betting-dock .turn-summary p strong { font-size: 18px; }
+  .chip-betting-dock .action-button { height: 79px; }
+  .chip-builder { padding-top: 6px; }
+  .builder-heading { margin-bottom: 5px; }
+  .builder-heading h3 { font-size: 17px; }
+  .builder-kicker { font-size: 8px; }
+  .draft-amount { max-width: 56%; gap: 3px 6px; }
+  .draft-amount > span { font-size: 10px; }
+  .draft-amount > strong { font-size: 29px; }
+  .draft-amount > small { font-size: 10px; }
+  .draft-amount > small b { font-size: 12px; }
+  .chip-workbench { flex-direction: column; gap: 6px; }
+  .chip-rack { order: 2; flex: none; padding: 0 2px 2px; gap: 4px; }
+  .chip-pick { min-width: 42px; gap: 4px; }
+  .denomination-chip { --chip-size: 48px; }
+  .chip-face > span { font-size: 16px; }
+  .chip-face > small { font-size: 9px; }
+  .chip-counter > button { width: 23px; height: 23px; }
+  .chip-counter > output { font-size: 14px; }
+  .wager-tray { order: 1; min-width: 0; min-height: 51px; padding: 3px 5px; gap: 5px; }
+  .empty-tray { flex-direction: row; gap: 6px; }
+  .empty-tray > .icon { width: 19px; height: 19px; }
+  .empty-tray > span { font-size: 12px; }
+  .empty-tray > small { display: none; }
+  .removable-pile { --disc-size: 27px; padding: 1px 3px; min-width: 38px; gap: 1px; }
+  .removable-pile .pile-discs { height: 25px; }
+  .removable-pile .pile-count { font-size: 9px; }
+  .removable-pile .pile-count > b { font-size: 13px; }
+  .builder-footer { flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .draft-hint { width: 100%; font-size: 11px; line-height: 1.3; }
+  .builder-buttons { width: 100%; gap: 5px; }
+  .draft-shortcut { min-height: 33px; padding: 5px 8px; font-size: 11px; }
+  .chip-ok { margin-left: auto; min-width: 127px; min-height: 39px; }
+  .chip-ok > span { font-size: 25px; }
+  .chip-ok > small { font-size: 12px; }
+  .actual-pot-chips { gap: 4px; margin: 4px 0; }
+  .actual-pot-chips .chip-pile { --disc-size: 25px; min-width: 28px; }
+  .actual-pot-chips .pile-discs { height: 27px; }
+  .actual-pot-chips .pile-count { font-size: 8px; }
+  .actual-pot-chips .pile-count > b { font-size: 11px; }
+  .actual-wager { gap: 2px; }
+  .actual-wager .chip-pile { --disc-size: 18px; min-width: 24px; }
+  .actual-wager .pile-discs { height: 19px; }
+  .actual-wager .pile-discs > i { border-width: 1px; }
+  .actual-wager .pile-count { font-size: 8px; }
+  .actual-wager .pile-count > b { font-size: 10px; margin-left: 1px; }
+  .actual-wager > strong { font-size: 11px; padding: 3px 4px; }
+  .wager-piles { max-width: 100px; gap: 2px; }
+  .count-6 .actual-wager.bet-left { left: auto; right: calc(100% + 4px); top: 50%; transform: translateY(-50%); }
+  .count-6 .actual-wager.bet-right { right: auto; left: calc(100% + 4px); top: 50%; transform: translateY(-50%); }
+  .seat:has(.actual-wager), .seat.is-turn:has(.actual-wager), .seat.is-winner:has(.actual-wager) { padding-bottom: 19px; }
+  .seat .actual-wager, .count-6 .seat .actual-wager.bet-left, .count-6 .seat .actual-wager.bet-right,
+  .count-3 .seat .actual-wager.bet-bottom, .count-4 .seat .actual-wager.bet-bottom,
+  .count-4 .seat .actual-wager.bet-top, .count-5 .seat .actual-wager.bet-top {
+    left: 4px; right: 4px; top: auto; bottom: 3px; transform: none; min-width: 0; max-width: none;
+  }
+  .actual-wager > strong { display: none; }
+  .wager-piles { justify-content: flex-start; flex-wrap: nowrap; gap: 4px; max-width: none; }
+  .actual-wager .chip-pile { flex-direction: row; gap: 2px; min-width: 0; color: #385769; }
+  .actual-wager .pile-discs { display: none; }
+  .actual-wager .chip-pile::before { content: ''; flex: none; width: 7px; height: 7px; border-radius: 50%; border: 1px dashed #e7d4a7; background: var(--chip-face); }
+  .actual-wager .pile-count { font-size: 7px; }
+  .actual-wager .pile-count > b { font-size: 9px; margin-left: 0; }
+}
+@media (max-width: 360px) {
+  .chip-betting-dock { grid-template-columns: minmax(97px, .8fr) minmax(0, 1.5fr); }
+  .chip-betting-dock .action-button { font-size: 17px; }
+  .chip-pick { min-width: 37px; }
+  .denomination-chip { --chip-size: 43px; }
+  .chip-face > span { font-size: 14px; }
+  .chip-counter { gap: 2px; }
+  .chip-counter > output { font-size: 12px; }
+  .chip-counter > button { width: 20px; height: 20px; }
+  .builder-heading h3 { font-size: 15px; }
+  .draft-amount > strong { font-size: 25px; }
+}

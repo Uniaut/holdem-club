@@ -1,0 +1,437 @@
+/* Shared-screen layout: spend screen space on the game and readable numbers. */
+:root { --edge: 6px; --gap: 6px; }
+body { font-size: 16px; }
+.header { height: 50px; padding: 4px 10px; gap: 14px; }
+.brand { font-size: 23px; gap: 7px; }
+.brand-mark { width: 36px; height: 36px; font-size: 27px; }
+.brand-club { font-size: 8px; letter-spacing: 4px; margin-top: 4px; }
+.header-divider { height: 24px; margin: 0; }
+.nav-active { font-size: 14px; gap: 6px; }
+.header-right { gap: 4px; }
+.local-label { display: none; }
+.icon-button { width: 38px; height: 38px; border-radius: 7px; }
+.icon-button .icon { width: 21px; height: 21px; }
+.settings-button { height: 38px; padding: 0 10px; margin: 0; font-size: 15px; gap: 6px; }
+.settings-button .icon { width: 18px; height: 18px; }
+.main { width: 100%; max-width: none; margin: 0; padding: var(--edge); display: flex; flex-direction: column; }
+.page-heading { min-height: 36px; margin: 0 0 var(--gap); padding: 0 2px; gap: 8px; }
+.page-heading .eyebrow, .page-heading p, .page-footer { display: none; }
+.page-heading h1 { margin: 0; font-size: 25px; letter-spacing: -1px; line-height: 1.25; }
+.session-pill { margin: 0; padding: 5px 9px; gap: 8px; font-size: 13px; max-width: none; flex-wrap: nowrap; }
+.workspace { gap: var(--gap); }
+.table-panel { border-radius: 9px; display: flex; flex-direction: column; }
+.table-toolbar { height: 38px; min-height: 38px; padding: 0 9px; gap: 6px; }
+.table-name { font-size: 13px; letter-spacing: .8px; gap: 7px; }
+.table-number { font-size: 11px; padding: 2px 4px; }
+.table-tools { font-size: 11px; gap: 7px; }
+.table-tools > span { font-size: 11px; }
+.undo-button { font-size: 14px; padding-left: 10px; margin-left: 3px; gap: 6px; }
+.undo-button .icon { width: 18px; height: 18px; }
+.table-scene { container-type: inline-size; min-height: 0; isolation: isolate; }
+.table-footer { height: 29px; min-height: 29px; padding: 0 9px; gap: 5px; }
+.chip-legend { gap: 14px; }
+.legend-title { font-size: 10px; letter-spacing: .6px; }
+.chip-legend > span:not(.legend-title) { font-size: 12px; gap: 5px; }
+.legend-chip { width: 13px; height: 13px; }
+.table-footer-note { font-size: 11px; }
+.table-corner { display: none; }
+.felt-label { font-size: 10px; letter-spacing: 2px; }
+.seat, .seat.is-turn, .seat.is-winner { --seat-inset: clamp(68px, calc(5.5cqw + 30px), 125px); top: clamp(var(--seat-inset), var(--y), calc(100% - var(--seat-inset))); width: clamp(150px, 23cqw, 330px); padding: 6px 8px; border-radius: 9px; }
+.seat-top { gap: 7px; }
+.avatar { width: clamp(30px, 4.2cqw, 52px); height: clamp(30px, 4.2cqw, 52px); font-size: clamp(23px, 3.4cqw, 39px); }
+.avatar small { font-size: 9px; }
+.seat-identity strong { font-size: clamp(18px, 2.2cqw, 32px); line-height: 1.2; letter-spacing: -.5px; }
+.seat-identity > span { font-size: clamp(11px, 1.35cqw, 18px); margin-top: 3px; line-height: 1.3; }
+.seat-balance { gap: 4px; padding-top: 5px; margin-top: 5px; font-size: clamp(28px, 4.2cqw, 64px); letter-spacing: -.04em; line-height: 1.08; }
+.seat-balance > .stack-value { display: block; flex: 1; min-width: 0; font: inherit; color: inherit; letter-spacing: inherit; white-space: nowrap; }
+.seat-balance > .stack-unit { font-size: clamp(9px, 1.1cqw, 14px); flex: none; letter-spacing: .2px; }
+.seat-badges { right: -5px; top: 5px; gap: 3px; }
+.dealer-badge { width: 26px; height: 26px; font-size: 14px; }
+.blind-badge { width: 26px; padding: 3px 0; font-size: 10px; }
+.turn-ribbon, .winner-ribbon { font-size: 11px; letter-spacing: 1px; padding: 4px 10px; }
+.seat-bet { gap: 5px; }
+.seat-bet strong { font-size: clamp(14px, 1.9cqw, 25px); line-height: 1.1; padding: 4px 6px; }
+.bet-stack { width: 23px; height: 27px; }
+.bet-stack i { width: 23px; height: 12px; }
+.seat-bet.bet-bottom { top: calc(100% + 9px); }
+.seat-bet.bet-top { bottom: calc(100% + 9px); }
+.bet-left, .bet-right { left: 50%; right: auto; top: calc(100% + 9px); transform: translateX(-50%); }
+.count-3 [data-seat="0"] .bet-bottom, .count-4 [data-seat="0"] .bet-bottom,
+.count-4 [data-seat="2"] .bet-top, .count-5 [data-seat="3"] .bet-top { left: calc(50% + clamp(85px, 12cqw, 150px)); }
+.pot-display { width: 43%; max-width: 43%; min-width: 0; top: 48%; }
+.pot-eyebrow { margin-bottom: 2px; font-size: clamp(13px, 1.6cqw, 21px); letter-spacing: 2px; }
+.pot-number { width: 100%; font-size: clamp(62px, 10cqw, 160px); letter-spacing: -.06em; line-height: 1; }
+.pot-number > span { font-size: clamp(11px, 1.3cqw, 18px); letter-spacing: 2px; margin: 4px 0 0; }
+.pot-chips { margin: 8px 0 10px; }
+.mini-chip { width: clamp(23px, 3cqw, 37px); height: clamp(23px, 3cqw, 37px); }
+.center-pill { max-width: 100%; font-size: clamp(12px, 1.5cqw, 21px); letter-spacing: .3px; line-height: 1.2; padding: 4px 9px; }
+.center-status p, .center-status .side-pot-hint { font-size: clamp(12px, 1.4cqw, 19px); margin-top: 5px; line-height: 1.4; }
+.center-status .side-pot-hint { max-width: none; }
+.winner-pill .icon { width: 19px; height: 19px; }
+.count-3 .pot-display { top: 54%; }
+.sidebar { gap: var(--gap); }
+.sidebar section { border-radius: 9px; }
+.session-card, .street-card { padding: 8px 10px; }
+.card-heading h2 { font-size: 18px; }
+.subtle-tag, .subtle-note { font-size: 11px; letter-spacing: .5px; }
+.blind-label { margin: 8px 0 3px; font-size: 11px; letter-spacing: .8px; }
+.blind-amount { font-size: clamp(30px, 3vw, 52px); gap: 8px; padding-bottom: 6px; line-height: 1.1; }
+.blind-amount > span { font-size: 26px; }
+.blind-amount > .blind-unit { font-size: 10px; letter-spacing: .5px; }
+.session-stat-row { margin-top: 7px; }
+.session-stat-row > span { font-size: 15px; gap: 5px; }
+.session-stat-row .icon { width: 17px; height: 17px; }
+.session-stat-row strong { font-size: 20px; }
+.session-stat-row strong > span { font-size: 16px; }
+.street-track { padding-top: 5px; }
+.street-item { height: 34px; gap: 9px; font-size: 18px; }
+.street-node { width: 26px; height: 26px; font-size: 11px; }
+.street-node .icon { width: 15px; height: 15px; }
+.street-item:not(:last-child)::after { left: 12px; top: 26px; height: 12px; }
+.stage-here { font-size: 10px; padding: 2px 5px; }
+.activity-card { flex: 1; min-height: 110px; max-height: none; }
+.activity-tabs { height: 40px; padding: 0 10px; gap: 14px; }
+.activity-tabs > button { padding: 7px 0; font-size: 17px; }
+.activity-tabs .icon { width: 18px; height: 18px; }
+.activity-content { min-height: 0; max-height: none; }
+.empty-activity { min-height: 90px; gap: 5px; padding: 6px; }
+.empty-cards { font-size: 38px; margin: 0; }
+.empty-activity strong { font-size: 16px; }
+.empty-activity p { font-size: 13px; margin: 0; line-height: 1.5; }
+.log-list { padding: 0 8px 5px; }
+.log-entry { gap: 6px; padding: 6px 0; }
+.log-symbol { width: 24px; height: 24px; font-size: 20px; }
+.log-entry p { font-size: 16px; line-height: 1.4; }
+.log-entry div > span { font-size: 11px; margin-top: 2px; }
+.log-entry.stage .log-symbol { font-size: 13px; }
+.ranking-list { padding: 1px 8px 0; }
+.ranking-list li { padding: 6px 0; gap: 6px; font-size: 16px; }
+.rank-no { font-size: 12px; width: 18px; }
+.ranking-list li:first-child .rank-no { font-size: 21px; }
+.rank-avatar { width: 28px; height: 28px; font-size: 20px; }
+.ranking-list strong { max-width: 38%; }
+.rank-stack { font-size: 21px; }
+.bankroll-total { padding: 7px 8px; font-size: 13px; }
+.bankroll-total strong { font-size: 15px; }
+.action-dock { padding: 8px 10px; gap: 10px; margin-top: var(--gap); min-height: 114px; border-radius: 9px; }
+.dock-symbol { width: 58px; height: 64px; font-size: 42px; border-radius: 9px; }
+.welcome-text { min-width: 0; }
+.welcome-text .eyebrow { font-size: 11px; letter-spacing: 1px; }
+.welcome-text h2 { font-size: clamp(20px, 2.1vw, 33px); letter-spacing: -.7px; margin: 4px 0; }
+.welcome-text p { font-size: 16px; line-height: 1.4; }
+.primary-button { min-height: 56px; padding: 0 14px; gap: 18px; font-size: 20px; }
+.primary-button .icon { width: 23px; height: 23px; }
+.start-button { min-width: 220px; }
+.betting-dock { display: grid; grid-template-columns: minmax(180px, .9fr) minmax(300px, 1.7fr) minmax(350px, 1.3fr); min-height: 138px; gap: 10px; }
+.turn-summary { padding-left: 10px; min-width: 0; margin: 0; }
+.turn-summary .eyebrow { font-size: 11px; letter-spacing: .8px; }
+.turn-summary h2 { margin: 5px 0; max-width: 100%; font-size: clamp(26px, 2.5vw, 40px); line-height: 1.15; }
+.turn-summary h2 > span { display: block; font-size: 17px; padding: 2px 0 0; }
+.turn-summary p { font-size: 15px; line-height: 1.4; }
+.turn-summary p strong { font-size: 23px; margin-left: 4px; }
+.quick-actions { width: 100%; max-width: none; gap: 6px; }
+.action-button { height: 106px; min-width: 0; gap: 5px; font-size: clamp(22px, 2vw, 33px); }
+.action-button kbd { font-size: 12px; right: 6px; bottom: 5px; }
+.call-button strong { display: block; width: 100%; min-width: 0; padding: 0 3px; white-space: nowrap; font-size: clamp(26px, 2.6vw, 43px); }
+.call-button strong .icon { width: 30px; height: 30px; }
+.allin-button { gap: 4px; }
+.allin-button > .icon { width: 24px; height: 24px; }
+.raise-control { width: 100%; min-width: 0; margin-left: 0; padding-left: 10px; }
+.raise-heading { margin-bottom: 13px; gap: 5px; }
+.raise-heading label { font-size: 16px; }
+.raise-input-wrap { gap: 4px; }
+.raise-input-wrap input { width: 140px; font-size: 31px; padding: 0 2px; }
+.raise-input-wrap > span { font-size: 9px; }
+.raise-control input[type=range] { height: 5px; margin-bottom: 14px; }
+.raise-control input[type=range]::-webkit-slider-thumb { width: 19px; height: 19px; }
+.raise-control input[type=range]::-moz-range-thumb { width: 13px; height: 13px; }
+.raise-bottom { gap: 6px; }
+.raise-presets { gap: 4px; }
+.raise-presets button { padding: 7px 6px; font-size: 13px; }
+.raise-button { padding: 8px 11px; gap: 10px; font-size: 19px; }
+.raise-button .icon { width: 21px; height: 21px; }
+
+/* Dialogs use the same denser spacing and larger, readable form labels. */
+dialog { width: min(720px, calc(100% - 16px)); padding: 18px; border-radius: 14px; max-height: calc(100dvh - 16px); }
+.dialog-close { top: 7px; right: 7px; }
+.dialog-kicker { margin: 2px 0 7px; font-size: 12px; letter-spacing: 1px; }
+dialog h2 { font-size: 30px; margin-bottom: 6px; padding-right: 28px; }
+.dialog-description { font-size: 16px; line-height: 1.6; margin-bottom: 12px; }
+.form-section { margin-top: 12px; }
+.field-label { font-size: 16px; }
+.count-picker { margin-top: 6px; gap: 6px; }
+.count-picker button { height: 46px; font-size: 25px; }
+.count-picker button span { font-size: 16px; }
+.player-name-grid { margin: 10px 0; gap: 6px; }
+.player-name-label { padding: 7px 8px; gap: 8px; }
+.player-name-label > .avatar { width: 36px; height: 36px; font-size: 25px; }
+.player-name-label > span:last-child { font-size: 10px; }
+.player-name-label input { font-size: 19px; padding-top: 2px; }
+.setup-money-grid { gap: 6px; }
+.setup-money-grid input { font-size: 23px; padding: 8px; margin-top: 5px; }
+.effects-toggle { padding: 10px 0 4px; font-size: 16px; }
+.effects-toggle small { font-size: 12px; }
+.effects-toggle input { width: 20px; height: 20px; }
+.reset-note, .form-error { font-size: 14px; margin-top: 8px; padding: 5px 8px; }
+.dialog-submit { margin-top: 10px; font-size: 19px; }
+.winner-pots { gap: 8px; }
+.winner-pot { padding: 9px; }
+.winner-pot-heading { margin-bottom: 7px; font-size: 18px; }
+.winner-pot-heading strong { font-size: 29px; }
+.winner-pot-heading small { font-size: 11px; }
+.winner-choices { gap: 6px; }
+.winner-choice { padding: 7px; font-size: 19px; gap: 8px; }
+.winner-choice .avatar { width: 33px; height: 33px; font-size: 24px; }
+.choice-check { width: 22px; height: 22px; }
+.choice-check .icon { width: 15px; height: 15px; }
+.auto-award-note { font-size: 13px; margin-top: 6px; }
+.help-steps { margin: 12px 0; gap: 12px; }
+.help-steps > li { gap: 9px; }
+.help-steps strong { font-size: 19px; margin: 2px 0 4px; }
+.help-steps p { font-size: 15px; line-height: 1.6; }
+.help-keyboard { margin: 12px 0 8px; padding: 8px; gap: 10px; }
+.help-keyboard > span, .help-note { font-size: 13px; }
+.help-keyboard kbd { font-size: 12px; }
+.allin-dialog-symbol { margin-bottom: 12px; }
+.allin-confirm { font-size: 34px; }
+.cancel-allin { margin-top: 12px; font-size: 16px; }
+
+@media (min-width: 1000px) and (min-height: 660px) {
+  .main { height: calc(100dvh - 50px); min-height: 0; }
+  .page-heading, .action-dock { flex: none; }
+  .workspace { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr) clamp(250px, 23vw, 360px); align-items: stretch; }
+  .table-scene { flex: 1; height: auto; min-height: 0; }
+  .sidebar { min-height: 0; }
+  .session-card, .street-card { flex: none; }
+  .activity-content { flex: 1; min-height: 0; max-height: none; }
+}
+@media (min-width: 1000px) and (max-height: 800px) {
+  .card-heading h2 { font-size: 16px; }
+  .session-card, .street-card { padding: 6px 8px; }
+  .blind-label { margin-top: 5px; font-size: 10px; }
+  .blind-amount { font-size: 31px; }
+  .session-stat-row { margin-top: 4px; }
+  .session-stat-row > span { font-size: 13px; }
+  .session-stat-row strong { font-size: 18px; }
+  .street-item { height: 29px; font-size: 16px; }
+  .activity-tabs { height: 35px; }
+  .activity-tabs > button { font-size: 15px; }
+  .empty-activity { min-height: 60px; }
+  .empty-activity p { display: none; }
+  .empty-cards { font-size: 26px; }
+  .betting-dock { min-height: 122px; }
+  .action-button { height: 94px; }
+  .pot-display { top: 48%; }
+  .pot-number { font-size: clamp(54px, 8.5cqw, 115px); }
+  .pot-chips { margin: 5px 0 7px; }
+  .center-status p { margin-top: 3px; }
+  .count-4 .pot-chips { display: none; }
+  .count-4 .pot-number > span { display: none; }
+  .count-4 .pot-number { font-size: clamp(55px, 7.5cqw, 100px); }
+  .seat, .seat.is-turn, .seat.is-winner { padding: 4px 7px; }
+  .seat-identity > span { font-size: 11px; }
+}
+@media (min-width: 1000px) and (max-height: 659px) {
+  .workspace { grid-template-columns: minmax(0, 1fr) 270px; }
+  .table-scene { height: 430px; min-height: 430px; }
+  .activity-content { max-height: 130px; }
+}
+
+/* On smaller displays, put betting controls directly after the table. */
+@media (max-width: 999px) {
+  .header { height: 48px; padding: 3px 6px; }
+  .header-divider, .nav-active { display: none; }
+  .header-right { gap: 2px; }
+  .main { height: auto; min-height: calc(100dvh - 48px); }
+  .page-heading { order: 1; min-height: 34px; }
+  .page-heading h1 { font-size: 24px; }
+  .workspace { display: contents; }
+  .table-panel { order: 2; }
+  .action-dock { order: 3; }
+  .sidebar { order: 4; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .session-card { grid-column: 1; }
+  .street-card { grid-column: 2; }
+  .activity-card { grid-column: 1 / -1; max-height: 270px; }
+  .table-scene { height: clamp(430px, calc(100dvh - 320px), 660px); min-height: 430px; }
+  .seat, .seat.is-turn, .seat.is-winner { width: clamp(145px, 24cqw, 230px); }
+  .seat-balance { font-size: clamp(29px, 5cqw, 46px); }
+  .seat-identity strong { font-size: clamp(18px, 2.7cqw, 25px); }
+  .seat-identity > span { font-size: clamp(11px, 1.6cqw, 15px); }
+  .avatar { width: 34px; height: 34px; font-size: 25px; }
+  .pot-number { font-size: clamp(62px, 12cqw, 110px); }
+  .pot-display { top: 47%; }
+  .count-4 .pot-display, .count-6 .pot-display { top: 47%; }
+  .count-4 .pot-chips, .count-6 .pot-chips { margin: 8px 0 10px; }
+  .count-4 .pot-number, .count-6 .pot-number { font-size: clamp(62px, 12cqw, 110px); }
+  .center-pill { font-size: 14px; }
+  .center-status p, .center-status .side-pot-hint { font-size: 13px; }
+  .table-name { font-size: 12px; }
+  .table-tools > span { font-size: 10px; }
+  .welcome-dock { flex-wrap: nowrap; min-height: 100px; }
+  .welcome-text h2 { font-size: 23px; }
+  .welcome-text p { font-size: 14px; }
+  .start-button { min-width: 175px; width: auto; margin: 0 0 0 auto; font-size: 18px; }
+  .betting-dock { grid-template-columns: minmax(150px, .8fr) minmax(0, 1.6fr); gap: 7px; padding: 8px; }
+  .action-button { height: 87px; font-size: 24px; }
+  .call-button strong { font-size: 31px; }
+  .turn-summary h2 { font-size: 28px; }
+  .turn-summary h2 > span { font-size: 15px; }
+  .turn-summary p { font-size: 13px; }
+  .turn-summary p strong { font-size: 20px; }
+  .raise-control { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; padding: 8px 0 0; margin: 0; gap: 10px 15px; border-left: 0; border-top: 1px solid var(--line); }
+  .raise-heading { margin: 0; }
+  .raise-control input[type=range] { grid-row: 1; grid-column: 2; margin: 0; }
+  .raise-bottom { grid-column: 1 / -1; }
+  .raise-presets button { font-size: 15px; padding: 7px 12px; }
+  .raise-button { min-width: 160px; font-size: 20px; padding: 7px 12px; }
+  .empty-activity { min-height: 100px; flex-direction: row; gap: 12px; }
+  .empty-activity p { display: block; }
+  .log-list, .ranking-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  .ranking-list strong { max-width: none; }
+  .activity-content { min-height: 0; max-height: 215px; }
+}
+@media (max-width: 600px) {
+  :root { --edge: 4px; --gap: 4px; }
+  .header { height: 45px; padding: 2px 5px; gap: 5px; }
+  .brand { font-size: 20px; }
+  .brand-mark { width: 32px; height: 32px; font-size: 25px; }
+  .brand-club { font-size: 7px; letter-spacing: 3px; margin-top: 3px; }
+  .header-right > .icon-button { width: 31px; height: 34px; }
+  .header-right > .icon-button .icon { width: 18px; height: 18px; }
+  .settings-button { height: 34px; padding: 0 6px; font-size: 12px; gap: 4px; }
+  .settings-button .icon { width: 16px; height: 16px; }
+  .page-heading { min-height: 31px; gap: 4px; align-items: center; }
+  .page-heading h1 { font-size: 21px; letter-spacing: -.8px; }
+  .session-pill { padding: 4px 6px; font-size: 10px; gap: 5px; }
+  .session-pill .pill-divider { display: none; }
+  .session-pill .live-dot { height: 5px; width: 5px; }
+  .table-toolbar { height: 33px; min-height: 33px; padding: 0 7px; }
+  .table-name { font-size: 11px; letter-spacing: .4px; }
+  .table-tools > span { display: none; }
+  .undo-button { font-size: 13px; padding: 0; border: 0; margin: 0; gap: 4px; }
+  .undo-button .icon { width: 16px; height: 16px; }
+  .table-scene { height: clamp(385px, calc(100dvh - 352px), 580px); min-height: 385px; }
+  .seat, .seat.is-turn, .seat.is-winner { --seat-inset: 65px; width: clamp(106px, 29cqw, 172px); padding: 4px 5px; border-radius: 7px; }
+  .seat-top { gap: 4px; }
+  .avatar { width: 27px; height: 27px; font-size: 21px; }
+  .avatar small { font-size: 6px; }
+  .seat-identity strong { font-size: clamp(15px, 3.8cqw, 20px); }
+  .seat-identity > span { font-size: clamp(9px, 2.3cqw, 12px); margin-top: 3px; }
+  .seat-balance { margin-top: 4px; padding-top: 4px; gap: 2px; font-size: clamp(25px, 6.8cqw, 37px); }
+  .seat-balance > .stack-unit { font-size: 6px; letter-spacing: 0; }
+  .dealer-badge { height: 20px; width: 20px; font-size: 11px; }
+  .blind-badge { width: 20px; font-size: 8px; padding: 2px 0; }
+  .seat-badges { right: -4px; }
+  .turn-ribbon, .winner-ribbon { font-size: 8px; padding: 3px 6px; letter-spacing: .5px; }
+  .seat-bet { gap: 3px; }
+  .seat-bet strong { font-size: clamp(12px, 3.3cqw, 17px); padding: 3px 4px; }
+  .bet-stack { width: 17px; height: 22px; }
+  .bet-stack i { width: 17px; height: 9px; }
+  .seat-bet.bet-top { bottom: calc(100% + 7px); }
+  .seat-bet.bet-bottom, .bet-left, .bet-right { top: calc(100% + 7px); }
+  .pot-display, .count-4 .pot-display, .count-6 .pot-display { top: 47%; width: 43%; max-width: 43%; }
+  .pot-eyebrow { font-size: 12px; letter-spacing: 1px; }
+  .pot-number, .count-4 .pot-number, .count-6 .pot-number { font-size: clamp(58px, 15cqw, 85px); }
+  .pot-number > span { font-size: 10px; letter-spacing: 1px; }
+  .pot-chips, .count-4 .pot-chips, .count-6 .pot-chips { margin: 7px 0 9px; }
+  .mini-chip { height: 24px; width: 24px; }
+  .center-pill { font-size: 11px; padding: 4px 6px; letter-spacing: 0; }
+  .center-status p, .center-status .side-pot-hint { font-size: 11px; line-height: 1.4; margin-top: 4px; }
+  .felt-label { font-size: 6px; letter-spacing: .6px; }
+  .table-footer { height: 26px; min-height: 26px; padding: 0 7px; }
+  .legend-title { display: none; }
+  .chip-legend { gap: 10px; }
+  .chip-legend > span:not(.legend-title) { font-size: 10px; gap: 4px; }
+  .legend-chip { height: 11px; width: 11px; }
+  .table-footer-note { font-size: 9px; }
+  .action-dock { gap: 6px; padding: 6px; }
+  .welcome-dock { flex-wrap: wrap; min-height: 100px; }
+  .dock-symbol { width: 38px; height: 43px; font-size: 30px; }
+  .welcome-text { flex: 1; }
+  .welcome-text .eyebrow { font-size: 9px; }
+  .welcome-text h2 { font-size: 19px; margin: 3px 0; }
+  .welcome-text p { font-size: 12px; }
+  .start-button { width: 100%; min-width: 0; margin: 0; font-size: 19px; min-height: 43px; }
+  .betting-dock { grid-template-columns: minmax(112px, .8fr) minmax(0, 1.5fr); gap: 6px; }
+  .turn-summary { padding-left: 8px; }
+  .turn-summary .eyebrow { font-size: 9px; letter-spacing: .5px; }
+  .turn-summary h2 { font-size: 24px; margin: 4px 0; }
+  .turn-summary h2 > span { font-size: 12px; padding-top: 2px; }
+  .turn-summary p { font-size: 11px; }
+  .turn-summary p strong { font-size: 18px; display: inline-block; margin-left: 2px; }
+  .quick-actions { gap: 4px; }
+  .action-button { height: 84px; font-size: 19px; gap: 4px; }
+  .action-button kbd { font-size: 9px; bottom: 3px; right: 4px; }
+  .call-button strong { font-size: 25px; }
+  .allin-button { flex-direction: column; gap: 3px; }
+  .allin-button > .icon { width: 19px; height: 19px; }
+  .raise-control { gap: 9px; padding-top: 6px; }
+  .raise-heading label { font-size: 13px; }
+  .raise-input-wrap input { width: 84px; font-size: 24px; }
+  .raise-input-wrap > span { display: none; }
+  .raise-control input[type=range] { height: 5px; }
+  .raise-presets { gap: 4px; }
+  .raise-presets button { font-size: 12px; padding: 7px 9px; }
+  .raise-button { font-size: 18px; min-width: 124px; gap: 12px; padding: 7px 9px; }
+  .raise-button .icon { width: 19px; height: 19px; }
+  .sidebar { margin-top: 4px; gap: 4px; }
+  .session-card, .street-card { padding: 7px; }
+  .card-heading h2 { font-size: 16px; }
+  .subtle-tag, .subtle-note { font-size: 9px; }
+  .blind-label { font-size: 9px; margin-top: 7px; }
+  .blind-amount { font-size: 30px; gap: 6px; }
+  .blind-amount > span { font-size: 22px; }
+  .blind-amount > .blind-unit { font-size: 8px; }
+  .session-stat-row > span { font-size: 13px; }
+  .session-stat-row strong { font-size: 18px; }
+  .session-stat-row strong > span { font-size: 14px; }
+  .street-item { font-size: 16px; height: 32px; gap: 7px; }
+  .activity-tabs > button { font-size: 16px; }
+  .log-entry p { font-size: 14px; }
+  .log-entry div > span { font-size: 10px; }
+  .ranking-list li { font-size: 14px; }
+  .rank-stack { font-size: 18px; }
+  .empty-activity { gap: 8px; padding: 6px; }
+  .empty-activity strong { font-size: 14px; }
+  .empty-activity p { font-size: 11px; }
+  dialog { padding: 13px; }
+  dialog h2 { font-size: 24px; }
+  .dialog-kicker { font-size: 10px; }
+  .dialog-description { font-size: 14px; }
+  .field-label { font-size: 13px; }
+  .player-name-label { gap: 5px; padding: 6px; }
+  .player-name-label > .avatar { width: 28px; height: 28px; font-size: 21px; }
+  .player-name-label > span:last-child { font-size: 8px; }
+  .player-name-label input { font-size: 16px; }
+  .setup-money-grid input { font-size: 18px; padding: 7px; }
+  .effects-toggle { font-size: 13px; }
+  .effects-toggle small { font-size: 9px; }
+  .winner-choice { font-size: 16px; gap: 5px; padding: 6px; }
+  .winner-choice .avatar { width: 28px; height: 28px; font-size: 21px; }
+  .winner-pot-heading { font-size: 16px; }
+  .winner-pot-heading strong { font-size: 25px; }
+  .help-steps strong { font-size: 17px; }
+  .help-steps p { font-size: 14px; }
+  .help-note { font-size: 12px; }
+}
+@media (max-width: 360px) {
+  .settings-button span { display: none; }
+  .settings-button { width: 32px; }
+  .page-heading h1 { font-size: 19px; }
+  .session-pill { font-size: 9px; }
+  .seat, .seat.is-turn, .seat.is-winner { width: 28cqw; padding: 4px; }
+  .seat-identity strong { font-size: 14px; }
+  .seat-identity > span { font-size: 8px; }
+  .avatar { width: 23px; height: 23px; font-size: 18px; }
+  .seat-balance { font-size: 24px; }
+  .seat-balance > .stack-unit { font-size: 5px; }
+  .betting-dock { grid-template-columns: minmax(100px, .75fr) minmax(0, 1.5fr); }
+  .turn-summary h2 { font-size: 21px; }
+  .action-button { font-size: 17px; }
+  .call-button strong { font-size: 22px; }
+  .raise-input-wrap input { width: 68px; font-size: 21px; }
+  .raise-heading label { font-size: 12px; }
+  .raise-presets button { font-size: 11px; padding: 7px; }
+  .raise-button { min-width: 110px; font-size: 17px; }
+  .table-footer-note { font-size: 8px; }
+}

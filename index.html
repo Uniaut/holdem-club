@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f2f5f6" />
+  <meta name="description" content="3~6명이 함께 보는 텍사스 홀덤 가상 칩 테이블. 베팅, 블라인드, 사이드 팟을 한 화면에서." />
+  <title>Holdem Club — 오늘 밤의 테이블</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/palette.css" />
+  <link rel="stylesheet" href="/compact.css" />
+  <link rel="stylesheet" href="/chip-betting.css" />
+  <link rel="stylesheet" href="/tips.css" />
+  <link rel="stylesheet" href="/bb-draw.css" />
+  <link rel="stylesheet" href="/bet-effects.css" />
+</head>
+<body>
+  <div id="app"></div>
+  <div id="effects" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="setup-dialog" aria-labelledby="setup-title"></dialog>
+  <dialog id="winner-dialog" aria-labelledby="winner-title"></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"></dialog>
+  <dialog id="tip-dialog" aria-labelledby="tip-title"></dialog>
+  <dialog id="bb-draw-dialog" aria-labelledby="bb-draw-title"></dialog>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

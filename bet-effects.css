@@ -1,0 +1,67 @@
+/* Only committed, significant game events mount these overlays. */
+.bet-event { --event-accent:#77c7f2; --event-bright:#e2f4ff; --event-duration:1650ms; position:fixed; overflow:hidden; pointer-events:none; contain:layout paint; container-type:inline-size; isolation:isolate; animation:event-lifetime var(--event-duration) both; }
+.event-color-gold { --event-accent:#e4bc61; --event-bright:#fff2c5; }
+.event-color-purple { --event-accent:#b49ef6; --event-bright:#f3e9ff; }
+.event-color-red { --event-accent:#ed9b75; --event-bright:#ffe8cc; }
+.event-color-green { --event-accent:#8fe1aa; --event-bright:#e9ffe8; }
+.event-veil { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 51%,#032635d9 0%,#03263583 43%,#03263500 77%); }
+.event-banner { position:absolute; top:50%; left:50%; width:min(580px,calc(100% - 28px)); padding:16px 12px; transform:translate(-50%,-50%); text-align:center; color:var(--event-bright); background:linear-gradient(105deg,#03263500,#032635ed 16%,#032635f5 50%,#032635ed 84%,#03263500); border-top:1px solid color-mix(in srgb,var(--event-accent) 65%,transparent); border-bottom:1px solid color-mix(in srgb,var(--event-accent) 65%,transparent); animation:event-banner-in .4s cubic-bezier(.12,.8,.25,1.2) both; }
+.event-kicker { font:700 clamp(7px,1.1cqw,11px) Manrope,sans-serif; letter-spacing:3px; color:var(--event-accent); }
+.event-duel-line { min-height:25px; margin:6px 0 0; display:flex; align-items:center; justify-content:center; gap:22px; }
+.event-actor { font-size:clamp(13px,2.1cqw,21px); letter-spacing:.5px; font-weight:700; color:#f6f8eb; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.event-title { display:block; position:relative; font:800 clamp(30px,7.4cqw,76px)/1.06 Manrope,sans-serif; letter-spacing:-2.8px; white-space:nowrap; text-shadow:0 2px 0 #052636,0 0 35px color-mix(in srgb,var(--event-accent) 36%,transparent); animation:event-title-in .5s cubic-bezier(.12,.8,.3,1.15) both; }
+.event-detail { font-size:clamp(11px,1.8cqw,16px); line-height:1.5; color:color-mix(in srgb,var(--event-bright) 75%,#7b9b9e); margin-top:4px; }
+.event-amount { margin-top:10px; display:flex; align-items:baseline; justify-content:center; gap:7px; }
+.event-amount > b { font:800 clamp(23px,4.5cqw,43px)/1.1 Manrope,sans-serif; letter-spacing:-1.1px; color:white; }
+.event-amount > span { font-size:9px; letter-spacing:1.4px; color:var(--event-accent); }
+.event-speedline { position:absolute; height:3px; width:95px; top:55%; background:linear-gradient(90deg,transparent,var(--event-accent),transparent); box-shadow:0 0 20px var(--event-accent); animation:event-speed .8s ease-out both; }
+.speedline-left { left:-30px; --direction:1; }
+.speedline-right { right:-30px; --direction:-1; }
+.event-orbit { position:absolute; top:50%; left:50%; width:100px; height:100px; margin:-50px 0 0 -50px; border:2px solid var(--event-accent); border-radius:50%; box-shadow:0 0 22px color-mix(in srgb,var(--event-accent) 30%,transparent),inset 0 0 18px color-mix(in srgb,var(--event-accent) 20%,transparent); animation:event-shockwave 1.05s cubic-bezier(.12,.7,.3,1) both; }
+.orbit-two { border-width:1px; animation-delay:.13s; }
+.event-rays { position:absolute; top:50%; left:50%; width:1px; height:1px; }
+.event-rays > i { position:absolute; top:0; left:0; width:3px; height:55px; opacity:0; border-radius:10px; background:linear-gradient(transparent,var(--event-accent)); transform-origin:50% 0; animation:event-ray .85s ease-out calc(var(--ray) * 13ms) both; }
+.event-player { min-width:0; max-width:40%; display:flex; align-items:center; gap:8px; }
+.event-player > i { height:37px; width:37px; flex:none; display:grid; place-items:center; border:1px solid color-mix(in srgb,var(--event-accent) 65%,transparent); border-radius:50%; color:var(--event-accent); background:#ffffff0c; font:normal 26px Georgia,serif; }
+.event-player > b { font-size:clamp(13px,2.4cqw,24px); white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+.event-vs { flex:none; color:var(--event-accent); font:800 19px Manrope,sans-serif; font-style:italic; text-shadow:0 0 14px var(--event-accent); }
+.event-duel .event-banner { width:min(680px,calc(100% - 22px)); padding-top:15px; padding-bottom:15px; }
+.event-duel .event-title { font-size:clamp(27px,6.5cqw,65px); margin-top:10px; }
+.event-duel .event-veil { background:linear-gradient(112deg,#251e4540 10%,#032635da 47%,#41292d40 90%); }
+.event-allin .event-title { font-size:clamp(50px,11cqw,112px); letter-spacing:-4px; }
+.event-allin .event-veil { background:radial-gradient(ellipse at center,#4b3a14bc,#0326357a 45%,transparent 83%); }
+.event-allin-duel .event-speedline { height:5px; width:135px; transform:rotate(-13deg); }
+.event-raise-war .event-speedline { transform:rotate(13deg); }
+.event-big-call .event-orbit { border-style:dashed; }
+.event-big-call .event-title { font-style:italic; }
+.event-showdown .event-title { letter-spacing:4px; font-size:clamp(29px,6.8cqw,70px); }
+.event-showdown .event-banner { background:linear-gradient(105deg,transparent,#032635e8 22%,#032635e8 78%,transparent); }
+.event-split-pot .event-title { font-size:clamp(26px,6.4cqw,65px); }
+.event-triple-up .event-title,.event-comeback .event-title { color:#fff2c6; }
+.event-double-up .event-banner,.event-triple-up .event-banner,.event-big-win .event-banner,.event-comeback .event-banner { border-color:#e2bd6f99; }
+.event-double-up .event-title,.event-triple-up .event-title { animation:event-title-in .55s cubic-bezier(.12,.8,.3,1.25) both; }
+
+/* Hovering, selecting chips, opening dialogs and rerendering labels stay quiet. */
+.pot-number { animation:none; }
+.denomination-chip:not(:disabled):hover,.denomination-chip:not(:disabled):active { transform:none; }
+dialog[open]:not(#bb-draw-dialog) { animation:none; }
+@keyframes event-lifetime { 0% { opacity:0; } 10%,78% { opacity:1; } 100% { opacity:0; } }
+@keyframes event-banner-in { from { opacity:0; transform:translate(-50%,-50%) scale(.82) skewX(-5deg); } to { opacity:1; transform:translate(-50%,-50%) scale(1) skewX(0); } }
+@keyframes event-title-in { from { opacity:0; transform:translateY(12px) scale(1.18); filter:blur(5px); } to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); } }
+@keyframes event-shockwave { 0% { opacity:.85; transform:scale(.25); } 100% { opacity:0; transform:scale(5.7); } }
+@keyframes event-ray { 0% { opacity:0; transform:rotate(var(--angle)) translateY(30px) scaleY(.1); } 25% { opacity:.85; } 100% { opacity:0; transform:rotate(var(--angle)) translateY(210px) scaleY(.4); } }
+@keyframes event-speed { 0% { opacity:0; translate:calc(var(--direction) * -90px) 0; } 30% { opacity:1; } 100% { opacity:0; translate:calc(var(--direction) * 130px) 0; } }
+@media (max-width:600px) {
+  .event-banner { width:calc(100% - 14px); padding:13px 5px; }
+  .event-kicker { letter-spacing:1.3px; }
+  .event-title { letter-spacing:-1px; }
+  .event-duel-line { gap:10px; margin-top:5px; }
+  .event-player { gap:5px; }
+  .event-player > i { height:27px; width:27px; font-size:20px; }
+  .event-vs { font-size:14px; }
+  .event-amount { margin-top:7px; }
+  .event-amount > span { font-size:7px; }
+  .event-showdown .event-title { letter-spacing:1px; }
+  .event-allin .event-title { letter-spacing:-2px; }
+}
+@media (prefers-reduced-motion:reduce) { .bet-event { display:none; } }
